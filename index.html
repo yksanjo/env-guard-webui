@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EnvGuard - Environment Manager</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+    }
+    .header {
+      background: #161b22;
+      padding: 20px 40px;
+      border-bottom: 1px solid #30363d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00d9ff;
+    }
+    .nav { display: flex; gap: 20px; }
+    .nav a {
+      color: #8b949e;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav a:hover { color: #00d9ff; }
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      color: #00d9ff;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+    .env-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .env-card {
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .env-card:hover {
+      border-color: #00d9ff;
+      transform: translateY(-2px);
+    }
+    .env-card h3 {
+      color: #e6edf3;
+      margin-bottom: 8px;
+    }
+    .env-card p {
+      color: #8b949e;
+      font-size: 14px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .stat {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 36px;
+      font-weight: bold;
+      color: #00d9ff;
+    }
+    .stat-label {
+      color: #8b949e;
+      margin-top: 8px;
+    }
+    .btn {
+      background: #238636;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn:hover { background: #2ea043; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #30363d;
+    }
+    th { color: #8b949e; font-weight: 500; }
+    .secret { color: #ffb800; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">🛡️ EnvGuard</div>
+    <nav class="nav">
+      <a href="#">Dashboard</a>
+      <a href="#">Environments</a>
+      <a href="#">Audit Logs</a>
+      <a href="#">Settings</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Dashboard</h1>
+    <br>
+    
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Environments</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">12</div>
+        <div class="stat-label">Variables</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">5</div>
+        <div class="stat-label">Secrets</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Need Rotation</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📦 Environments</h2>
+      <div class="env-list">
+        <div class="env-card">
+          <h3>Production</h3>
+          <p>5 variables, 3 secrets</p>
+        </div>
+        <div class="env-card">
+          <h3>Staging</h3>
+          <p>4 variables, 1 secret</p>
+        </div>
+        <div class="env-card">
+          <h3>Development</h3>
+          <p>3 variables, 1 secret</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Recent Variables</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Environment</th>
+            <th>Type</th>
+            <th>Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DATABASE_URL</td>
+            <td>production</td>
+            <td>String</td>
+            <td>2 min ago</td>
+          </tr>
+          <tr>
+            <td>API_KEY</td>
+            <td>production</td>
+            <td class="secret">🔒 Secret</td>
+            <td>5 min ago</td>
+          </tr>
+          <tr>
+            <td>DEBUG</td>
+            <td>staging</td>
+            <td>Boolean</td>
+            <td>1 hour ago</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
